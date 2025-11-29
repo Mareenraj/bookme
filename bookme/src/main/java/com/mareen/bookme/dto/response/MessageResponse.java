@@ -1,4 +1,6 @@
 package com.mareen.bookme.dto.response;
 
-public record MessageResponse() {
+public record MessageResponse(
+        String message
+) {
 }

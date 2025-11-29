@@ -46,13 +46,21 @@ public class User implements UserDetails {
     @Column(nullable = false, updatable = false)
     private LocalDateTime createdAt;
 
-    private boolean isEnabled = false;
+    @Column(nullable = false)
+    @Builder.Default
+    private boolean enabled = false;
 
-    private boolean isAccountNonExpired = true;
+    @Column(nullable = false)
+    @Builder.Default
+    private boolean accountNonExpired = true;
 
-    private boolean isAccountNonLocked = true;
+    @Column(nullable = false)
+    @Builder.Default
+    private boolean accountNonLocked = true;
 
-    private boolean isCredentialsNonExpired = true;
+    @Column(nullable = false)
+    @Builder.Default
+    private boolean credentialsNonExpired = true;
 
     private LocalDateTime emailVerifiedAt;
 
@@ -63,26 +71,26 @@ public class User implements UserDetails {
 
     @Override
     public boolean isAccountNonExpired() {
-        return isAccountNonExpired;
+        return this.accountNonExpired;
     }
 
     @Override
     public boolean isAccountNonLocked() {
-        return isAccountNonLocked;
+        return this.accountNonLocked;
     }
 
     @Override
     public boolean isCredentialsNonExpired() {
-        return isCredentialsNonExpired;
+        return this.credentialsNonExpired;
     }
 
     @Override
     public boolean isEnabled() {
-        return isEnabled;
+        return this.enabled;
     }
 
     public void markEmailAsVerified() {
-        this.isEnabled = true;
+        this.enabled = true;
         this.emailVerifiedAt = LocalDateTime.now();
     }
 }
